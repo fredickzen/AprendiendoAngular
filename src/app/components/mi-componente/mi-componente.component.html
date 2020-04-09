@@ -3,3 +3,11 @@
 <p>{{comentario}}</p>
 <p>Hola, soy un parrafo</p>
 <hr>
+<button (click)="ocultarPeliculas()" >Ocultar peliculas</button>
+<hr>
+<div *ngIf="mostrarPeliculas">
+    <app-peliculas></app-peliculas>    
+</div>
+<app-pruebas></app-pruebas>
+
+<hr>
