@@ -4,8 +4,14 @@
         <br>
         <div id="favorita" *ngIf="favorita"> 
             <h2 class="subheader">Película favorita</h2>
-            <h4> {{favorita.title}} </h4>
-            <h5> {{favorita.year}} </h5>
+            <h4> {{favorita.title | uppercase}} </h4>
+            <h5> {{favorita.year | espar }} </h5>
+            <h5> {{fecha | date: 'fullDate' }} </h5>
+            <h5> {{fecha | date }} </h5>
+            <h5> {{fecha | date: 'full' }} </h5>
+            <h5> {{fecha | date: 'short' }} </h5>
+            <h5> {{fecha | date: 'dd/MM/yy' }} </h5>
+            <h5> {{fecha | date: 'dd/MM/yyyy' }} </h5>
             
         </div>
         <hr>
