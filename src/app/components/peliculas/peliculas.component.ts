@@ -10,8 +10,9 @@ export class PeliculasComponent implements OnInit, DoCheck, OnDestroy {
 
   public titulo:string;
   public peliculas: Array<Pelicula>;
+  public favorita: Pelicula;
   constructor() { 
-    this.titulo= "Pulsa el boton de abajo";
+    this.titulo= "Películas";
     this.peliculas = [
       new Pelicula("Spiderman 4",2019,"https://media.biobiochile.cl/wp-content/uploads/2019/10/sensual-spiderman.jpg"),
       new Pelicula("Vengadores",2009,"https://mouse.latercera.com/wp-content/uploads/2019/11/avengers-chilenos.jpg"),
@@ -34,5 +35,8 @@ export class PeliculasComponent implements OnInit, DoCheck, OnDestroy {
   }
   ngOnDestroy(){
     console.log("El componente se va a eliminar")
+  }
+  MostrarFavorita(event){
+    this.favorita= event.pelicula;
   }
 }

@@ -1,4 +1,6 @@
-<div id="slider" class="slider-big">
+<div id="slider" 
+[ngClass]="{'sliderbig': !size || size == 'big', 
+'slider-small': size == 'small'}"  class="slider-big">
     <h1> {{nombre}} </h1>
-    <a href="#" class="btn-white">Ir al blog</a>
+    <a [routerLink]="['/blog']" class="btn-white" *ngIf="!size || size=='big'" >Ir al blog</a>
 </div>

@@ -1,51 +1,48 @@
-<br>
-<h1 class="subheader">{{titulo}}</h1>
+<app-slider [nombre]="'Películas'" [size]="'small'"></app-slider>
+<div class="center">
+    <section id="content">
+        <br>
+        <div id="favorita" *ngIf="favorita"> 
+            <h2 class="subheader">Película favorita</h2>
+            <h4> {{favorita.title}} </h4>
+            <h5> {{favorita.year}} </h5>
+            
+        </div>
+        <hr>
+        <h1 class="subheader">{{titulo}}</h1>
 
-<button (click)="cambiarTitulo()">Click acá</button>
+        <!-- <button (click)="cambiarTitulo()">Click acá</button>
 
-<hr>
-<h2>Mostrar primera película</h2>
-{{peliculas[0].title}}
-<hr>
-<h2>Número de películas</h2>
-<div *ngIf="peliculas.length<=3">
-    Hay pocas películas
-</div>
-<div *ngIf="peliculas.length>3">
-    Hay muchas películas
-</div>
-{{peliculas.length}}
+        <hr>
+        <h2>Mostrar primera película</h2>
+        {{peliculas[0].title}}
+        <hr>
+        <h2>Número de películas</h2>
+        <div *ngIf="peliculas.length<=3">
+            Hay pocas películas
+        </div>
+        <div *ngIf="peliculas.length>3">
+            Hay muchas películas
+        </div>
+        {{peliculas.length}}
 
-<hr>
-<h2 class="subheader">Listado de películas</h2>
-<div *ngIf="peliculas">
-    <div id="articles">
-        <article class="article-item" *ngFor="let pelicula of peliculas; let i =index;">
-            <div class="image-wrap">
-                <img src="{{pelicula.image}}" alt="{{pelicula.title}}" />
+        <hr>
+        <h2 class="subheader">Listado de películas</h2> -->
+        <div *ngIf="peliculas">
+            <div id="articles">
+                <div *ngFor="let pelicula of peliculas; let i =index;">
+                    <app-pelicula 
+                    [pelicula]="pelicula" 
+                    [i]="i"
+                    (MarcarFavorita)= "MostrarFavorita($event)"
+                    ></app-pelicula>
+                </div>
+
+
+                <!--AÑADIR ARTICULOS VIA JS-->
+
             </div>
-    
-            <h2> {{i+1}} - {{ pelicula.title }}</h2>
-            <span class="date">
-                Hace 5 minutos
-            </span>
-            <span class="year" 
-            [style.background]= "pelicula.year >= 2016 ? 'green':'red'"
-            [class.year-green]= "pelicula.year >= 2016"
-            [class.year-red]= "pelicula.year < 2016"
-            [ngClass]="{
-                'year-green': pelicula.year > 2016,
-                'year-red': pelicula.year <= 2016
-            }"
-            >
-                {{pelicula.year}}
-            </span>
-            <a href="#">Leer más</a>
-    
-            <div class="clearfix"></div>
-        </article>
-    
-        <!--AÑADIR ARTICULOS VIA JS-->
-    
-    </div>    
+        </div>
+    </section>
+    <app-sidebar></app-sidebar>
 </div>
