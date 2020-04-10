@@ -3,6 +3,46 @@
 <div class="center">
     <section id="content">
         <h1 class="subheader">Formulario</h1>
+        <!-- <div *ngIf="user.nombre">
+            <h2>Datos al vuelo</h2>
+            {{user.nombre}} {{user.apellidos}} {{user.bio}} {{user.genero}}
+        </div>
+         -->
+        <form class="mid-form" #userForm="ngForm" (ngSubmit)="onSubmit()" >
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" [(ngModel)]="user.nombre" #nombre= "ngModel" required pattern="[a-zA-Z ]+"/>
+                <small *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</small>
+            </div>
+
+            <div class="form-group">
+                <label for="apellidos">Apellidos</label>
+                <input type="text" name="apellidos" [(ngModel)]="user.apellidos" #apellidos="ngModel" required />
+                <small *ngIf="!apellidos.valid && apellidos.touched">El apellido no es válido</small>
+            </div>
+
+            <div class="form-group">
+                <label for="bio">Biografia</label>
+                <textarea name="bio" [(ngModel)]="user.bio" #bio="ngModel" required ></textarea>
+                <small *ngIf="!bio.valid && bio.touched">La biografía no es válida</small>
+            </div>
+
+            <div class="form-group radibuttons">
+                <input type="radio" name="genero" value="hombre" [(ngModel)]="user.genero" #genero="ngModel"  required /> Hombre 
+                <input type="radio" name="genero" value="mujer" [(ngModel)]="user.genero" #genero="ngModel" /> Mujer 
+                <input type="radio" name="genero" value="otro" [(ngModel)]="user.genero" #genero="ngModel" /> Otro
+                <small *ngIf="!genero.valid && genero.touched">Debes seleccionar un género</small>
+            </div>
+
+            <div class="clearfix"></div>
+            <input type="submit" value="Enviar" class="btn btn-success" [disabled]="userForm.invalid" />
+            <small *ngIf="userForm.invalid">Debes completar todos los campos del formulario</small>
+       </form>
+       <h2 class="subheader"></h2>
+       <button (click)="hazDadoClick()">Click</button>
+       <hr>
+       <input type="text" name="" [(ngModel)]="campo"  (blur)="hazSalido()" (keyup.enter)="hazPulsadoEnter()" >
+       {{campo}}
     </section>
     <app-sidebar></app-sidebar>
 </div>
