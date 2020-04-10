@@ -95,8 +95,26 @@ body {
 }
 
 
-#menu a:hover{
-    color: #f13e3e;
+#menu a:hover, .active{
+    color: #f13e3e !important;
+}
+
+.year-green {
+    display: block;
+    background-color: green;
+    color: white;
+    padding: 5px;
+    width: 121px;
+    text-align: center;
+
+}
+.year-red {
+    display: block;
+    background-color: red;
+    color: white;
+    padding: 5px;
+    width: 121px;
+    text-align: center;
 }
 
 #slider{
