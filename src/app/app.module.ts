@@ -19,6 +19,8 @@ import { PaginaComponent } from './components/pagina/pagina.component';
 import { ErrorComponent } from './components/error/error.component';
 import { PeliculaComponent } from './components/pelicula/pelicula.component';
 import { EsParPipe } from './pipes/espar.pipe';
+import { ArticlesComponent } from './components/articles/articles.component';
+import { MomentModule } from "angular2-moment";
 
 @NgModule({
   declarations: [
@@ -36,13 +38,15 @@ import { EsParPipe } from './pipes/espar.pipe';
     PaginaComponent,
     ErrorComponent,
     PeliculaComponent,
-    EsParPipe
+    EsParPipe,
+    ArticlesComponent
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MomentModule
   ],
   providers: [appRoutingProvider],
   bootstrap: [AppComponent]
