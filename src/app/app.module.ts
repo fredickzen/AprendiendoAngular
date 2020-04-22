@@ -21,6 +21,7 @@ import { PeliculaComponent } from './components/pelicula/pelicula.component';
 import { EsParPipe } from './pipes/espar.pipe';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { MomentModule } from "angular2-moment";
+import { ArticleComponent } from './components/article/article.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MomentModule } from "angular2-moment";
     ErrorComponent,
     PeliculaComponent,
     EsParPipe,
-    ArticlesComponent
+    ArticlesComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,
