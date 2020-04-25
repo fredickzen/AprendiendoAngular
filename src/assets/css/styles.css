@@ -272,6 +272,7 @@ body {
 }
 
 input[type="text"],
+input[type="file"],
 textarea{
     width: 100%;
     min-height: 30px;
@@ -280,7 +281,11 @@ textarea{
     margin-bottom: 5px;
     transition: 300ms all;
 }
-
+.afu-attach-pin {
+    width: 100% !important;
+    display: block;
+    max-width: 90%;
+}
 input[type="text"]:focus,
 textarea:focus{
     box-shadow: 0px 0px 5px #eee inset;
