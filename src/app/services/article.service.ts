@@ -10,30 +10,40 @@ export class ArticleService {
   public url: string;
   constructor(
     private _http: HttpClient
-  ) { 
-    this.url= Global.url;
+  ) {
+    this.url = Global.url;
   }
 
-  pruebas(){
+  pruebas() {
     return this.url;
   }
-  getArticles(last:any = null):Observable<any>{
-    var articles= 'articles';
+  getArticles(last: any = null): Observable<any> {
+    var articles = 'articles';
     if (last != null) {
-     articles= 'articles/true';
+      articles = 'articles/true';
     }
-    return this._http.get(this.url+articles);
+    return this._http.get(this.url + articles);
   }
 
-  getArticle(articleId):Observable<any>{
-    return this._http.get(this.url+'article/'+articleId);
+  getArticle(articleId): Observable<any> {
+    return this._http.get(this.url + 'article/' + articleId);
   }
-  search(searchString):Observable<any>{
-    return this._http.get(this.url+'search/'+searchString);
+  search(searchString): Observable<any> {
+    return this._http.get(this.url + 'search/' + searchString);
   }
-  create(article):Observable<any>{
-    let params =  JSON.stringify(article);
+  create(article): Observable<any> {
+    let params = JSON.stringify(article);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._http.post(this.url+'save', params, { headers:headers});
-    }
+    return this._http.post(this.url + 'save', params, { headers: headers });
+  }
+  update(id, article):Observable<any>{
+    let params = JSON.stringify(article);
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this._http.put(this.url + 'article/'+id, params, { headers: headers });
+
+  }
+  delete(id):Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this._http.delete(this.url + 'article/'+id,{ headers: headers });
+  }
 }

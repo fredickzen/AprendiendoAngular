@@ -7,19 +7,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Global } from 'src/app/services/global';
 
 @Component({
-  selector: 'app-article-new',
-  templateUrl: './article-new.component.html',
-  styleUrls: ['./article-new.component.css'],
+  selector: 'app-article-edit',
+  templateUrl: '../article-new/article-new.component.html',
+  styleUrls: ['./article-edit.component.css'],
   providers: [ArticleService]
-
 })
-export class ArticleNewComponent implements OnInit {
+export class ArticleEditComponent implements OnInit {
 
   public article: Article;
   public status: string;
   public is_edit: boolean;
   public page_title: string;
-  public url:string;
+  public url: string;
 
   afuConfig = {
     multiple: false,
@@ -48,25 +47,47 @@ export class ArticleNewComponent implements OnInit {
     private _articleService: ArticleService
   ) {
     this.article = new Article('', '', '', null, null);
-    this.page_title= "Crear artículo";
+    this.is_edit=true;
+    this.page_title= "Editar artículo";
     this.url= Global.url;
   }
 
   ngOnInit(): void {
+    this.getArticle();
+  }
+  getArticle(){
+    this._route.params.subscribe( params => {
+      let id = params["id"];
+      this._articleService.getArticle(id).subscribe(
+        response => {
+          if(response.article){
+            this.article= response.article;
+          }
+          else
+          {
+            this._router.navigate(['home']);
+          }  
+        },
+        error => {
+          this._router.navigate(['home']);
+        }
+      );
+    });
   }
   onSubmit() {
     console.log(this.article);
-    this._articleService.create(this.article).subscribe(
+    this._articleService.update( this.article._id, this.article).subscribe(
       response => {
         if (response.status == 'success') {
           this.status = 'success';
           this.article = response.article;
+
           // Alerta
-          swal('Artículo creado', 
-          'El artículo se ha creado correctamente',
+          swal('Artículo editado', 
+          'El artículo se ha editado correctamente',
           'success'
           );
-          this._router.navigate(['/blog']);
+          this._router.navigate(['/blog/articulo', this.article._id]);
         }
         else {
           this.status = 'error'
@@ -74,7 +95,10 @@ export class ArticleNewComponent implements OnInit {
         }
       },
       error => {
-        console.log(error);
+        swal('Artículo editado', 
+        'El artículo no se ha editado correctamente',
+        'error'
+        );
         this.status = error;
       }
     );

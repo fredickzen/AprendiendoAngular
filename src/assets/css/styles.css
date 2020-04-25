@@ -286,6 +286,11 @@ textarea{
     display: block;
     max-width: 90%;
 }
+
+.image-thumb img{
+    width: 150px;
+}
+
 input[type="text"]:focus,
 textarea:focus{
     box-shadow: 0px 0px 5px #eee inset;

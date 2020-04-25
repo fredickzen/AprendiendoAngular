@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import swal from 'sweetalert';
 import { ArticleService } from 'src/app/services/article.service';
 import { Article } from 'src/app/models/article';
 import { ActivatedRoute, Router, Params } from '@angular/router';
@@ -42,6 +43,33 @@ export class ArticleComponent implements OnInit {
       );
     });
     
+  }
+  delete(id){
+    swal({
+      title: "¿Estás seguro?",
+      text: "Una vez eliminado, el artículo no puede ser recuperado",
+      icon: "warning",
+      buttons:[true, true],
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        this._articleService.delete(id).subscribe(
+          response => {
+            swal("El artículo ha sido eliminado", {
+              icon: "success",
+            });
+            this._router.navigate(['/blog']);
+          },
+          error => {
+            swal("No se ha podido eliminar el archivo", {
+              icon: "error",
+            });
+            this._router.navigate(['/blog']);
+          }
+        );
+      }
+    });
   }
 
 }

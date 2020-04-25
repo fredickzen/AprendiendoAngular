@@ -25,6 +25,7 @@ import { ArticleComponent } from './components/article/article.component';
 import { SearchComponent } from './components/search/search.component';
 import { ArticleNewComponent } from './components/article-new/article-new.component';
 import { AngularFileUploaderModule } from "angular-file-uploader";
+import { ArticleEditComponent } from './components/article-edit/article-edit.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
     ArticlesComponent,
     ArticleComponent,
     SearchComponent,
-    ArticleNewComponent
+    ArticleNewComponent,
+    ArticleEditComponent
   ],
   imports: [
     BrowserModule,
